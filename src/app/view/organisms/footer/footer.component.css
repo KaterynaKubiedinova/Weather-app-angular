@@ -1,0 +1,9 @@
+.footer {
+	display: flex;
+	justify-content: end;
+	padding: 20px;
+	background: rgba(240, 248, 255, 0.353);
+}
+a {
+	cursor: pointer;
+}

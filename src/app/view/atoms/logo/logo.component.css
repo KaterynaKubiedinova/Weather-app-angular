@@ -1,0 +1,8 @@
+h1 {
+	padding: 13px;
+	border-radius: 50%;
+	color: rgb(133, 82, 44);
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background: rgba(255, 218, 185, 0.902);
+	cursor: pointer;
+}

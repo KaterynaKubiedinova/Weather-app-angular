@@ -1,0 +1,27 @@
+<header class="app-header" b>
+	<app-logo></app-logo>
+	<form 
+		(submit)="confirmLocation($event)" 
+		class="location">
+		<div class="dropdown-input">
+			<input 
+				(keyup)="onKeyUp($event)" 
+				type="text" 
+				[value]="value" 
+				placeholder="Enter location"/>
+			<div 
+				*ngIf="selected" 
+				class="dropdown">
+				<div 
+					(click)="choseCity($event)" 
+					class="city" 
+					*ngFor="let val of allCities">{{val.name}}</div>
+			</div>
+		</div>
+		<app-button 
+			[handleClick]="confirmLocation" 
+			text="select location">
+		</app-button>
+	</form>
+
+</header>

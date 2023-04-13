@@ -1,0 +1,35 @@
+.image{
+	min-height:100vh;
+	background-size:cover; 
+	width:100vw;
+  background-position:50% 50%;
+}
+.main-content {
+	min-height:80vh; 
+	width: 100vw;
+}
+.main-block{
+	min-height: 75vh;
+	width: 90%;
+	padding: 10px 30px;
+	margin: auto;
+	margin-top: 20px;
+	background: rgba(240, 248, 255, 0.443);
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: start;
+}
+
+.spring {
+	background-image: url('./constants/img/spring.jpg');
+}
+.summer {
+	background-image: url('./constants/img/summer.jpg');
+}
+.autumn{
+	background-image: url('./constants/img/autumn.jpg');
+}
+.winter{
+	background-image: url('./constants/img/winter.jpg');
+}

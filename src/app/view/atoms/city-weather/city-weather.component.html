@@ -1,0 +1,8 @@
+<div class="city-weather" [routerLink]="['city', currentCity.location.name]">
+	<h1>{{currentCity.location.name}}</h1>
+	<div class="temp">
+		<img [src]="currentCity.current.condition.icon" alt="weather">
+		<h2> {{currentCity.current.temp_c}}°</h2>
+	</div>
+	<p>{{currentCity.current.condition.text}}</p>
+</div>

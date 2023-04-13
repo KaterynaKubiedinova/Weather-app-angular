@@ -1,0 +1,11 @@
+<div class="current-weather">
+	<h2>{{currentCity.date.slice(5).replace('-',' ').split(' ').reverse().join('.')}}</h2>
+	<div class="temp">
+		<img [src]="currentCity.day.condition.icon" alt="weather">
+		<h2> {{currentCity.day.avgtemp_c.toFixed(0)}}°</h2>
+	</div>
+	<p>Min {{currentCity.day.mintemp_c.toFixed(0)}}°, Max {{currentCity.day.maxtemp_c.toFixed(0)}}°</p>
+	<p>{{currentCity.day.condition.text}}</p>
+	<p>Max wind: {{currentCity.day.maxwind_kph.toFixed(0)}}km/h</p>
+	<p>Level UV: {{currentCity.day.uv}}</p>
+</div>

@@ -1,0 +1,17 @@
+<div class="chosen-city">
+	<div class="info">
+		<h1>{{cityInfo.location.name}}</h1>
+		<app-button 
+			[handleClick]="weatherInTwoWeeks"
+			text="Show weather in two weeks">
+		</app-button>
+		<app-button 
+			[handleClick]="addToFavorites"
+			text="Add to favorites cities">
+		</app-button>
+	</div>
+	<app-city-weather-more 
+		[weatherArray]="cityInfo.forecast.forecastday">
+	</app-city-weather-more>
+</div>
+
