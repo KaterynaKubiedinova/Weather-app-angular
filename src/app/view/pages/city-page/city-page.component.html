@@ -2,11 +2,13 @@
 	<div class="info">
 		<h1>{{cityInfo.location.name}}</h1>
 		<app-button 
-			[handleClick]="weatherInTwoWeeks"
+			(handleClick)="weatherInTwoWeeks($event)"
+			[data]="chosenCity"
 			text="Show weather in two weeks">
 		</app-button>
 		<app-button 
-			[handleClick]="addToFavorites"
+			(handleClick)="addToFavorites($event)"
+			[data]="cityInfo"
 			text="Add to favorites cities">
 		</app-button>
 	</div>

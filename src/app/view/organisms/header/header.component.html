@@ -1,13 +1,14 @@
 <header class="app-header" b>
-	<app-logo></app-logo>
+	<h1 (click)="logoClick()">Weather</h1>
 	<form 
 		(submit)="confirmLocation($event)" 
 		class="location">
 		<div class="dropdown-input">
 			<input 
-				(keyup)="onKeyUp($event)" 
+				(keyup)="onKeyUp($event)"
 				type="text" 
-				[value]="value" 
+				[value]="value"
+				(focus)="onFocus()" 
 				placeholder="Enter location"/>
 			<div 
 				*ngIf="selected" 
@@ -19,8 +20,10 @@
 			</div>
 		</div>
 		<app-button 
-			[handleClick]="confirmLocation" 
-			text="select location">
+			(handleClick)="confirmLocation($event)" 
+			text="select location"
+			[data]="value"
+		> select location
 		</app-button>
 	</form>
 

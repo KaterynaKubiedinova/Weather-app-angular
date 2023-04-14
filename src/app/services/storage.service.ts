@@ -6,18 +6,6 @@ import { BehaviorSubject, Observable } from "rxjs";
 	providedIn: 'root',
 })
 export class StorageService {
-	private inputValueSubject: BehaviorSubject<string> = new BehaviorSubject('');
-	
-	getInputValue$(): Observable<string> {
-		return this.inputValueSubject.asObservable();
-	}
-	getInputValue(): string {
-		return this.inputValueSubject.getValue();
-	}
-	setInputValue(newValue: string) {
-		this.inputValueSubject.next(newValue);
-	}
-	
 	private currentCitySubject: BehaviorSubject<IResponseForecastWeather> = new BehaviorSubject({} as IResponseForecastWeather);
 
 	getCurrentCity$(): Observable<IResponseForecastWeather> {

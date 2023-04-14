@@ -1,41 +1,49 @@
 import { IResponseForecastWeather } from 'src/app/models/response';
-import {  take } from 'rxjs';
+import {  filter, take, takeUntil } from 'rxjs';
 import { StorageService } from 'src/app/services/storage.service';
 import { WeatherServices } from 'src/app/services/weather.services';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-city-page',
   templateUrl: './city-page.component.html',
   styleUrls: ['./city-page.component.css']
 })
-export class CityPageComponent implements OnInit {
+export class CityPageComponent {
   cityInfo: IResponseForecastWeather = {} as IResponseForecastWeather;
-  chosenCity: string;
-  constructor(private weatherService: WeatherServices, private storageService: StorageService, private route: ActivatedRoute) {
+  chosenCity: string = '';
+  constructor(
+    private weatherService: WeatherServices,
+    private storageService: StorageService,
+    private route: ActivatedRoute,
+    private router: Router) {
     this.cityInfo = storageService.getChosenCity();
-    this.chosenCity = route.snapshot.params["id"]
+  
+    router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((value) => {
+      this.chosenCity = route.snapshot.params["id"];
+      this.weatherService.getForecast(this.chosenCity.replace('-', ' '))
+        .subscribe(city => {
+          this.storageService.setChosenCity(city);
+            this.cityInfo = this.storageService.getChosenCity();
+        });
+    })
   }
-  ngOnInit(): void {
 
-    this.weatherService.getForecast(this.chosenCity)
-      .pipe(take(1))
+  weatherInTwoWeeks(chosenCity: string) {
+    this.weatherService.getForecast(chosenCity, 14)
       .subscribe(city => {
       this.storageService.setChosenCity(city);
         this.cityInfo = this.storageService.getChosenCity();
     });
   }
-  weatherInTwoWeeks() {
-    this.weatherService.getForecast(this.chosenCity, 14)
-      .subscribe(city => {
-      this.storageService.setChosenCity(city);
-        this.cityInfo = this.storageService.getChosenCity();
-        console.log('city: ',this.cityInfo);
-    });
-  }
-  addToFavorites() {
-    this.storageService.addFavoriteCity(this.cityInfo);
+
+  addToFavorites(cityInfo: IResponseForecastWeather) {
+    const condition = this.storageService.getFavoriteCities().find((city) => city?.location?.name === cityInfo.location.name);
+    if (!condition) {
+      this.storageService.addFavoriteCity(cityInfo);
+    }
+    return;
   }
 
 }

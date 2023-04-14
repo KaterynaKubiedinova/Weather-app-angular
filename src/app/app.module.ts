@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './view/organisms/header/header.component';
 import { FooterComponent } from './view/organisms/footer/footer.component';
-import { LogoComponent } from './view/atoms/logo/logo.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CityWeatherMoreComponent } from './view/molecules/city-weather-more/city-weather-more.component';
 import { FavoritesComponent } from './view/molecules/favorites/favorites.component';
@@ -19,7 +18,6 @@ import { ButtonComponent } from './view/atoms/button/button.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    LogoComponent,
     CityWeatherComponent,
     FavoritesComponent,
     MainPageComponent,

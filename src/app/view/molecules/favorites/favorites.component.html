@@ -1,8 +1,8 @@
 <div 
-	*ngIf="favoriteCities.length > 1"
+	*ngIf="favoriteCities"
 	class="favorite">
 	<app-city-weather 
-		*ngFor="let city of favoriteCities" 
+		*ngFor="let city of favoriteCities"
 		[currentCity]="city">
 	</app-city-weather>
 </div>

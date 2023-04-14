@@ -46,3 +46,11 @@ input::placeholder{
 	background: rgba(240, 248, 255, 0.737);
 	box-shadow: 2px 3px 5px rgba(122, 99, 47, 0.661);
 }
+h1 {
+	padding: 13px;
+	border-radius: 50%;
+	color: rgb(133, 82, 44);
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background: rgba(255, 218, 185, 0.902);
+	cursor: pointer;
+}

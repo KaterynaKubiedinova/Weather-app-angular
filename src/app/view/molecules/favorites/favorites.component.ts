@@ -1,5 +1,5 @@
 import { IResponseForecastWeather } from 'src/app/models/response';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -7,8 +7,12 @@ import { StorageService } from 'src/app/services/storage.service';
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css']
 })
-export class FavoritesComponent {
-  favoriteCities: IResponseForecastWeather[] = [{} as IResponseForecastWeather];
+export class FavoritesComponent implements OnInit{
+  favoriteCities: IResponseForecastWeather[] | undefined;
   constructor(private storageService: StorageService) {
+  }
+  ngOnInit(): void {
+    this.favoriteCities = this.storageService.getFavoriteCities();
+    console.log(this.favoriteCities)
   }
 }

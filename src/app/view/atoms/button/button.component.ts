@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -6,6 +6,12 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./button.component.css']
 })
 export class ButtonComponent {
-  @Input() handleClick: (event: any) => void = () => {};
   @Input() text: string = '';
+  @Input() data: any;
+
+  @Output() handleClick = new EventEmitter();
+
+  buttonClick(): void {
+    this.handleClick.emit(this.data);
+  }
 }
