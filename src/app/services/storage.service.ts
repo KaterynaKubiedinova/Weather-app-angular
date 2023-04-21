@@ -1,53 +1,36 @@
-import { IResponseForecastWeather } from '../models/response';
+import { ResponseForecastWeather } from 'src/app/models/response';
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
-	providedIn: 'root',
+	providedIn: 'any',
 })
 export class StorageService {
-	private currentCitySubject: BehaviorSubject<IResponseForecastWeather> = new BehaviorSubject({} as IResponseForecastWeather);
-
-	getCurrentCity$(): Observable<IResponseForecastWeather> {
-		return this.currentCitySubject.asObservable();
+	setCurrentCity(city: ResponseForecastWeather, alreadyFavorite: boolean = false) {
+		localStorage.setItem('currentCity', JSON.stringify({...city, alreadyFavorite}));
 	}
-	getCurrentCity(): IResponseForecastWeather {
-		return this.currentCitySubject.getValue();
+	getCurrentCity(): ResponseForecastWeather {
+		return JSON.parse(localStorage.getItem('currentCity') || '');
 	}
-	setCurrentCity(newValue: IResponseForecastWeather) {
-		this.currentCitySubject.next(newValue);
+	setChosenCity(city: ResponseForecastWeather) {
+		localStorage.setItem('chosenCityInfo', JSON.stringify(city));
 	}
-
-	private favoriteCitiesSubject: BehaviorSubject<IResponseForecastWeather[]> = new BehaviorSubject([{} as IResponseForecastWeather]);
-	getFavoriteCities$(): Observable<IResponseForecastWeather[]> {
-		return this.favoriteCitiesSubject.asObservable();
+	getChosenCity(): ResponseForecastWeather {
+    return JSON.parse(localStorage.getItem('chosenCityInfo') || '');
 	}
-	getFavoriteCities(): IResponseForecastWeather[] {
-		return this.favoriteCitiesSubject.getValue();
+	setFavoriteCity(city: ResponseForecastWeather, alreadyFavorite: boolean) {
+		const favoriteCities = JSON.parse(localStorage.getItem('favoriteCities') || '');
+		const condition = favoriteCities.find((cityInfo: ResponseForecastWeather) => city?.location?.tz_id === cityInfo.location.tz_id);
+		if (!condition) {
+			const newFavoriteCities = [...favoriteCities, city];
+			localStorage.setItem('favoriteCities', JSON.stringify(newFavoriteCities));
+		}
 	}
-	addFavoriteCity(city: IResponseForecastWeather): void {
-		const cities = this.getFavoriteCities();
-
-		this.setFavoriteCities([...cities, city])
+	getFavoriteCities() {
+		return JSON.parse(localStorage.getItem('favoriteCities') || '');
 	}
-	deleteFavoriteCity(id: string): void {
-		const cities = this.getFavoriteCities().filter((item) => item.location.tz_id !== id);
-
-    this.setFavoriteCities(cities);
+	removeFavoriteCity(id: string) {
+		const favoriteCities = JSON.parse(localStorage.getItem('favoriteCities') || '');
+		const newFavoriteCities = favoriteCities.filter((city: ResponseForecastWeather) => city?.location?.tz_id !== id);
+		localStorage.setItem('favoriteCities', JSON.stringify(newFavoriteCities));
 	}
-	setFavoriteCities(newValue: IResponseForecastWeather[]) {
-		this.favoriteCitiesSubject.next(newValue);
-	}
-
-	private chosenCitySubject: BehaviorSubject<IResponseForecastWeather> = new BehaviorSubject({} as IResponseForecastWeather);
-	getChosenCity$(): Observable<IResponseForecastWeather> {
-		return this.chosenCitySubject.asObservable();
-	}
-	getChosenCity(): IResponseForecastWeather {
-		return this.chosenCitySubject.getValue();
-	}
-	setChosenCity(newValue: IResponseForecastWeather) {
-		this.chosenCitySubject.next(newValue);
-	}
-
 }

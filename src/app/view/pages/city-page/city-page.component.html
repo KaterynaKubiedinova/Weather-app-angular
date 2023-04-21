@@ -1,19 +1,19 @@
 <div class="chosen-city">
 	<div class="info">
-		<h1>{{cityInfo.location.name}}</h1>
+		<h1>{{cityDetails?.location?.name}}</h1>
 		<app-button 
-			(handleClick)="weatherInTwoWeeks($event)"
+			(handleClick)="cityDetails?.isMore ? onLessClick($event) : onMoreClick($event)"
 			[data]="chosenCity"
-			text="Show weather in two weeks">
+			[text]="cityDetails?.isMore ? 'Less' : 'More'"
+			class="two-weeks">
 		</app-button>
-		<app-button 
-			(handleClick)="addToFavorites($event)"
-			[data]="cityInfo"
-			text="Add to favorites cities">
-		</app-button>
+		<div *ngIf="!cityDetails?.isFavorite" class="like-buttons" (click)="addToFavorites()">
+			<i class="fa-solid fa-heart-circle-plus fa-2xl"></i>
+		</div>
+		<div *ngIf="cityDetails?.isFavorite" class="like-buttons" (click)="removeFromFavorites()">
+			<i class="fa-solid fa-heart-circle-check fa-2xl"></i>
+		</div>
 	</div>
-	<app-city-weather-more 
-		[weatherArray]="cityInfo.forecast.forecastday">
-	</app-city-weather-more>
+	<router-outlet></router-outlet>
 </div>
 

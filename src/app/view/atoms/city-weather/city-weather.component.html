@@ -1,8 +1,0 @@
-<div *ngIf="currentCity?.location?.name" class="city-weather" (click)="cityClick()">
-	<h1>{{currentCity?.location?.name}}</h1>
-	<div class="temp">
-		<img [src]="currentCity?.current?.condition?.icon" alt="weather">
-		<h2> {{currentCity?.current?.temp_c?.toFixed(0)}}°</h2>
-	</div>
-	<p>{{currentCity?.current?.condition?.text}}</p>
-</div>

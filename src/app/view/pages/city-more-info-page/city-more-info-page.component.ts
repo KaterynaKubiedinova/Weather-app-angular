@@ -1,66 +1,26 @@
+import { filter } from 'rxjs';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { LocalStorageService } from './../../../services/localStorage.service';
 import { WeatherServices } from './../../../services/weather.service';
-import { ResponseForecastWeather } from 'src/app/models/response';
-import { filter } from 'rxjs';
+import { ResponseForecastWeather } from './../../../models/response';
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-city-page',
-  templateUrl: './city-page.component.html',
-  styleUrls: ['./city-page.component.css']
+  selector: 'app-city-more-info-page',
+  templateUrl: './city-more-info-page.component.html',
+  styleUrls: ['./city-more-info-page.component.css']
 })
-export class CityPageComponent {
+export class CityMoreInfoPageComponent {
   cityDetails: ResponseForecastWeather | undefined;
-  chosenCity: string = '';
   
   constructor(
-    private weatherService: WeatherServices,
     private localStorageService: LocalStorageService,
     private route: ActivatedRoute,
     private router: Router) {
     router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((value) => {
-      this.chosenCity = route.snapshot.params["city"];
-
-      const currentCity = localStorageService.get('currentLocationWeather');
-      const inFavorite = localStorageService.get('favoriteCities')?.find((city: ResponseForecastWeather) => city.location.name === this.chosenCity);
-    
-      if (currentCity.location.name === this.chosenCity) {
-        this.cityDetails = currentCity;
-      } else if (inFavorite) {
-        this.cityDetails = inFavorite
-      } else {
-        weatherService.getForecast(this.chosenCity, 14)
-        .subscribe(data => {
-          localStorageService.set('cityDetails', {...data, isFavorite: false, isMore: false})
-          this.cityDetails = {...data, isFavorite: false, isMore: false};
-        })
-      }
-      
-      // this.cityInfo = storageService.getChosenCity();
-
-      // if (storageService.getFavoriteCities().map((city: ResponseForecastWeather) => city.location.tz_id !== this.cityInfo.location.tz_id)) {
-      //   this.alreadyFavorite = false;
-      // } else {
-      //   this.alreadyFavorite = true
-      // }
-    })
-  }
-
-  onMoreClick(chosenCity: string) {
-    this.weatherService.getForecast(chosenCity, 14)
-      .subscribe(data => {
-        this.localStorageService.set('cityDetails', {...data, isFavorite: this.cityDetails?.isFavorite, isMore: true})
         this.cityDetails = this.localStorageService.get('cityDetails');
       });
-  }
-  onLessClick(chosenCity: string) {
-    this.weatherService.getForecast(chosenCity)
-    .subscribe(data => {
-      this.localStorageService.set('cityDetails', {...data, isFavorite: this.cityDetails?.isFavorite, isMore: false})
-      this.cityDetails = this.localStorageService.get('cityDetails');
-    });
-  }
+      }
 
   addToFavorites() {
     const favoriteCities = this.localStorageService.get('favoriteCities');

@@ -1,5 +1,5 @@
 .chosen-city {
-	width: 90vw;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -13,4 +13,14 @@
 }
 h1 {
 	margin-right: 15px;
+}
+.city-page-content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.like-buttons{
+	margin-left: 25px;
+	cursor: pointer;
 }

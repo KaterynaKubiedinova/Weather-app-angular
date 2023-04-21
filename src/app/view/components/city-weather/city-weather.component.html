@@ -1,0 +1,20 @@
+<div class="city-weather" (click)="onCityBlockClick()">
+	<div class="date">
+		<i class="fa-solid fa-calendar-days fa-sx"></i>
+		<h5>{{date}}</h5>
+	</div>
+	<div class="city">
+		<h1>{{locationName}}</h1>
+	<div 
+		class="like-buttons" 
+		*ngIf="currentCity.isFavorite"
+		(click)="removeFromFavorite($event)">
+		<i class="fa-solid fa-heart-circle-check fa-2xl"></i>
+	</div>
+	</div>
+	<div class="temp">
+		<img [src]="icon" alt="weather">
+		<h2> {{avgTemp}}°</h2>
+	</div>
+	<p>{{explanation}}</p>
+</div>

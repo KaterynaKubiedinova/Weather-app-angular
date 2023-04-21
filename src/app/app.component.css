@@ -1,24 +1,27 @@
-.image{
-	min-height:100vh;
+.current-season-image{
+	height:100%;
 	background-size:cover; 
-	width:100vw;
+	width:100%;
   background-position:50% 50%;
 }
 .main-content {
-	min-height:80vh; 
-	width: 100vw;
+	height: 78%; 
+	margin: 1%;
+	width: 98%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .main-block{
-	min-height: 75vh;
-	width: 90%;
-	padding: 10px 30px;
+	height: 98%;
+	width: 98%;
+	padding: 1%;
 	margin: auto;
-	margin-top: 20px;
 	background: rgba(240, 248, 255, 0.443);
 	display: flex;
 	flex-direction: column;
 	align-items: start;
-	justify-content: start;
+	justify-content: center;
 }
 
 .spring {
