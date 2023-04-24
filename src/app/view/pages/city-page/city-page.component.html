@@ -1,0 +1,19 @@
+<div class="chosen-city">
+	<div class="info">
+		<h1>{{cityDetails?.location?.name}}</h1>
+		<app-button 
+			(handleClick)="cityDetails?.isMore ? onLessClick($event) : onMoreClick($event)"
+			[data]="chosenCity"
+			[text]="cityDetails?.isMore ? 'Less' : 'More'"
+			class="two-weeks">
+		</app-button>
+		<div *ngIf="!cityDetails?.isFavorite" class="like-buttons" (click)="addToFavorites()">
+			<i class="fa-solid fa-heart-circle-plus fa-2xl"></i>
+		</div>
+		<div *ngIf="cityDetails?.isFavorite" class="like-buttons" (click)="removeFromFavorites()">
+			<i class="fa-solid fa-heart-circle-check fa-2xl"></i>
+		</div>
+	</div>
+	<router-outlet></router-outlet>
+</div>
+

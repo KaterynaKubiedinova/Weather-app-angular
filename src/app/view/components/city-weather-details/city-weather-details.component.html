@@ -1,0 +1,14 @@
+<div class="current-weather">
+	<div class="date">
+		<i class="fa-solid fa-calendar-days fa-sx"></i>
+		<h4>{{date}}</h4>
+	</div>
+	<div class="temp">
+		<img [src]="icon" alt="weather">
+		<h2> {{avgTemp}}°</h2>
+	</div>
+	<p>Min {{minTemp}}°, Max {{maxTemp}}°</p>
+	<p>{{explanation}}</p>
+	<p>Max wind: {{maxwind}}km/h</p>
+	<p>Level UV: {{levelUv}}</p>
+</div>

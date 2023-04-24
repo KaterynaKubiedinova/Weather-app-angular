@@ -1,0 +1,57 @@
+.app-header{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0 1%;
+	width: 98%;
+	height: 10%;
+	background: rgba(240, 248, 255, 0.353);
+	box-shadow: 2px 3px 5px rgba(122, 99, 47, 0.661);
+}
+.location{
+	display: flex;
+	margin: 0 0 0 10%;
+	width: 60%;
+}
+input{
+	padding: 3px;
+	border: 2px solid rgba(255, 218, 185, 0.902);
+	width: 100%;
+	height: 25px;
+	font-size: medium;
+	color: rgb(133, 82, 44);
+}
+input::placeholder{
+	font-family: inherit;
+	font-size: medium;
+}
+.dropdown-input {
+	position: relative;
+	margin-right: 5%;
+	width: 70%;
+}
+.dropdown {
+	margin: 3px;
+	background: rgba(240, 248, 255, 0.519);
+	box-shadow: 2px 3px 5px rgba(122, 99, 47, 0.661);
+	position: absolute;
+	width: 100%;
+	z-index: 2;
+}
+.city {
+	padding: 5px;
+	cursor: pointer;
+}
+.city:hover {
+	background: rgba(240, 248, 255, 0.737);
+	box-shadow: 2px 3px 5px rgba(122, 99, 47, 0.661);
+}
+h1 {
+	font-size: 40px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	cursor: pointer;
+	background: #A7CFDF;
+	background: linear-gradient(to right, #A7CFDF 0%, #23538A 100%);
+	background-clip: text;
+		-webkit-text-fill-color: transparent;
+}

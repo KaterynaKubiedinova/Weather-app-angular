@@ -1,0 +1,29 @@
+.current-weather {
+	background: rgba(240, 248, 255, 0.627);
+	border-radius: 25%;
+	box-shadow: 2px 3px 5px rgba(122, 99, 47, 0.661);
+	padding: 25px;
+	margin: 15px;
+	height: 35%;
+	width: 145px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+.temp {
+	display: flex;
+}
+.date {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+i {
+	margin: 10px;
+}
+img {
+	margin-right: 10px;
+	width: 80px;
+}

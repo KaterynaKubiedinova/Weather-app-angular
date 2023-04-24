@@ -1,0 +1,6 @@
+<app-city-weather [currentCity]="currentCity" (handleClick)="toCityDetailsPage($event)"></app-city-weather>
+<div 
+	*ngIf="favoriteCities"
+	class="favorite">
+		<app-city-weather *ngFor="let city of favoriteCities" [currentCity]="city" (handleClick)="toCityDetailsPage($event)"></app-city-weather>
+</div>
